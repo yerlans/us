@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mongodb-url:
+    image: mongo:latest
+    container_name: mongodb-url
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - /path/to/local/data:/root/mongodb-url
+
+  mongodb-user:
+      image: mongo:latest
+      container_name: mongodb-user
+      restart: always
+      ports:
+        - "27018:27017"
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+      volumes:
+        - /path/to/local/data:/root/mongodb-user
+
+  redis:
+    image: redis:latest
+    restart: always
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /path/to/local/data:/root/redis
+      - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=my-password
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16

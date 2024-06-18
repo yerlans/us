@@ -1,0 +1,10 @@
+env: "local"
+storage:
+  path: "mongodb://root:example@localhost:27017"
+  db: "urlshortenerdb"
+  collection: "urls"
+cache_path: "localhost:6379"
+ttl: 100000s
+grpc:
+  port: 44044
+  timeout: 5s
